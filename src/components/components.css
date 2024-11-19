@@ -1,0 +1,189 @@
+/* Mantén tus imports aquí */
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(255, 255, 255); /* Fallback para navegadores antiguos */
+  background: linear-gradient(160deg, rgba(255,255,255,1) 0%, rgba(158,158,158,1) 100%);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  background-color: black;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  opacity: 1; /* Opacidad completa inicialmente */
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+  opacity: 0.6; /* Reduce la opacidad cuando se scrollea */
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo ligeramente transparente */
+}
+
+.navbar-logo {
+  width: 30%;
+  padding-left: 7%;
+}
+
+.navbar-logo img {
+  width: 100px;
+}
+
+.navbar-menu {
+  width: 70%;
+  display: flex;
+  color: white;
+  font-family: "Urbanist", sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10%;
+}
+
+.navbar-menu span {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-menu span p {
+  margin: 0;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu span:hover p {
+  color: #cecece;
+}
+
+.navbar-menu span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.navbar-menu span.selected::after {
+  transform: scaleX(1);
+}
+
+.navbar-menu span.selected p {
+  color: #ffffff;
+}
+
+/* Sección adicional */
+.about-us-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: "Urbanist", sans-serif;
+    
+  }
+  
+  .about-us-image {
+    position: relative;
+    flex: 1;
+  }
+  
+  .about-us-image img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0.7;
+  }
+  
+  .about-us-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .about-us-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(to bottom, #f2f2f2, #d9d9d9);
+    box-shadow: -10px 0px 15px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .about-us-content {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5rem;
+    border-radius: 10px;
+    opacity: 0.8;
+    color: white;
+
+    
+  }
+
+  .about-us-content-back{
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    position: relative;
+    border-radius: 10px;
+    color: white;
+    opacity: 0.8;
+    transform: translate(300px, 100px);
+    min-height: 20vh;
+    max-width: 50%;
+  }
+  
+  .about-us-content h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  
+  .about-us-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .about-us-button {
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .about-us-button:hover {
+    background-color: black;
+    color: white;
+  }
+  
+
+  .services{
+    min-height: 100vh;
+    background-color: #878787;
+  }
