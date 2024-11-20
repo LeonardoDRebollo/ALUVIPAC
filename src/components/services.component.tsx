@@ -3,30 +3,46 @@ import { useRef } from "react";
 
 export const services = [
   {
-    image: "public/images/puertas.jpg",
+    image: "/images/puertas.jpg",
     title: "PUERTAS",
-    description: "Contenido de la sección de puertas",
+    description: "Instalación de puertas en vidrio y aluminio",
   },
   {
-    image: "public/images/ventanas.jpg",
+    image: "/images/ventanas.jpg",
     title: "ARMARIOS",
-    description: "Contenido de la sección de armarios",
+    description: "Instalación de armarios",
   },
   {
-    image: "public/images/armarios.jpg",
+    image: "/images/armarios.jpg",
     title: "VENTANAS",
-    description: "Contenido de la sección de ventanas",
+    description: "Instalación de ventanas, el marco puede ser de vidrio o aluminio",
   },
   {
-    image: "public/images/canceles.jpeg",
+    image: "/images/canceles.jpeg",
     title: "CANCELES",
-    description: "Contenido de la sección de canceles",
+    description: "Instalación de canceles",
   },
   {
-    image: "public/images/cocina.jpg",
+    image: "/images/cocina.jpg",
     title: "COCINA",
-    description: "Contenido de la sección de cocina",
+    description: "Instalación de cocinas integrales",
   },
+  {
+    image: "/images/puertas-aluminio.jpg",
+    title: "PUERTAS ALUMINIO",
+    description: "Instalación de puertas en aluminio",
+  },
+  {
+    image: "/images/barandales.jfif",
+    title: "BARANDALES DE ALUMINIO",
+    description: "Instalación de barandales en aluminio para escaleras",
+  },{
+    image: "/images/baños.jfif",
+    title: "BAÑOS",
+    description: "Instalación de baños y lavabos",
+  }
+
+
 ];
 
 export const Services = () => {

@@ -89,6 +89,7 @@ export const Navbar: React.FC = () => {
         open={isLoginDialogOpen}
         onClose={() => setIsLoginDialogOpen(false)}
         aria-labelledby="login-dialog-title"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.7)",}}
       >
         <DialogTitle id="login-dialog-title">Iniciar sesión</DialogTitle>
         <DialogContent>
