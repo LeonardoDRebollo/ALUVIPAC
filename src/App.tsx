@@ -18,10 +18,10 @@ function App() {
       <section id="quotes" className="AppSection">
         <Pricing/>
       </section>
-      <section id="location">
+      <section id="location" className="AppSection">
         <Locations/>
       </section>
-      <section id="login">
+      <section className="AppSection">
         <Footer/>
       </section>
     </div>

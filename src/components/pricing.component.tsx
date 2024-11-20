@@ -17,7 +17,7 @@ export const Pricing = () => {
         position: "relative",
       }}
     >
-      {/* Superposición para oscurecer la imagen */}
+
       <div
         style={{
           position: "absolute",
