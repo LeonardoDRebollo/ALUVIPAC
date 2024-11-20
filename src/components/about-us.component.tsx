@@ -17,13 +17,16 @@ export const AboutUs = () => {
               <h2>¿Quiénes somos?</h2>
               <p>
                 En Aluvipac, contamos con 25 años de experiencia brindando
-                soluciones en vidrio y aluminio de alta calidad. Desde nuestra
+                soluciones en vidrio y aluminio de alta calidad. 
+              </p>
+              <p>
+              Desde nuestra
                 sede en Cancún, trabajamos en todo Quintana Roo, ofreciendo a
                 profesionales y empresas innovación, puntualidad y un servicio
                 personalizado que garantiza la excelencia en cada proyecto.
               </p>
             </div>
-            <div>
+            <div style={{display: "flex", justifyContent: "center"}}>
               <button className="about-us-button">Hacer una cotización</button>
             </div>
           </div>

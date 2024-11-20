@@ -23,6 +23,18 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
+
+      // Detectar qué sección está actualmente visible
+      menuItems.forEach((item, index) => {
+        const section = document.getElementById(item.id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          const isVisible = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+          if (isVisible) {
+            setSelectedIndex(index);
+          }
+        }
+      });
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -30,7 +42,7 @@ export const Navbar: React.FC = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [menuItems]);
 
   return (
     <div className={`navbar ${isScrolled ? "scrolled" : ""}`}>
