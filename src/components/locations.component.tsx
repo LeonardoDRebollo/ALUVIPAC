@@ -34,7 +34,7 @@ export const Locations = () => {
             </p>
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <p>Horarios de atención:</p>
-              <section style={{ display: "flex", justifyContent: "space-between", width: "60%" }}>
+              <section className="schedule">
               <div>
                 <p>Lunes a Viernes:</p>
                 <p>Sabados:</p>

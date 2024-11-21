@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import Logo from "../assets/logo-comprimido.jpg";
-import { Dialog, DialogContent, DialogTitle, TextField, Button } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, TextField, Button, IconButton } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 export const Navbar: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     { label: "Sobre nosotros", id: "about-us" },
@@ -20,6 +23,7 @@ export const Navbar: React.FC = () => {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
+    setIsMenuOpen(false); 
   };
 
   useEffect(() => {
@@ -48,6 +52,16 @@ export const Navbar: React.FC = () => {
     <>
       {/* Navbar */}
       <div className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+        <div className="menu-icon-mobile">
+        <IconButton onClick={() => setIsMenuOpen(!isMenuOpen)} >
+          {isMenuOpen ? (
+            <CloseIcon style={{ color: "white", fontSize: "2rem" }} />
+          ) : (
+            <MenuIcon style={{ color: "white", fontSize: "2rem" }} />
+          )}
+        </IconButton>
+        </div>
+   
         <div className="navbar-logo">
           <img
             src={Logo}
@@ -82,6 +96,26 @@ export const Navbar: React.FC = () => {
             </span>
           ))}
         </div>
+      </div>
+
+       {/* Menú desplegable */}
+       <div className={`navbar-menu ${isMenuOpen ? "open" : ""}`}>
+        {menuItems.map((item, index) => (
+          <span
+            key={index}
+            className={selectedIndex === index ? "selected" : ""}
+            onClick={() => {
+              if (item.label === "Login") {
+                setIsLoginDialogOpen(true);
+              } else {
+                setSelectedIndex(index);
+                scrollToSection(item.id);
+              }
+            }}
+          >
+            <p>{item.label}</p>
+          </span>
+        ))}
       </div>
 
       {/* Dialogo de Login */}

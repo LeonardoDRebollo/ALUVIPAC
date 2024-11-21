@@ -27,18 +27,16 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-  opacity: 1; 
+  opacity: 1;
   transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
-
-
 .navbar.scrolled {
-  opacity: 0.6; 
-  background-color: rgba(0, 0, 0, 0.8); 
+  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .navbar:hover {
-  opacity: 1; 
+  opacity: 1;
   min-height: 70px;
   transition: all 0.3s ease;
 }
@@ -102,6 +100,53 @@ body {
   color: #ffffff;
 }
 
+.menu-icon-mobile {
+  display: none;
+}
+
+.navbar-menu.open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  padding-top: 10%;
+  left: 0;
+  width: 100%;
+  max-height: 50vh; 
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-y: auto;
+  padding: 1rem 0;
+  z-index: 999;
+  padding-top: 20%;
+  transition: max-height 0.3s ease;
+}
+
+.navbar-menu.open span {
+  padding: 0.5rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+.navbar-menu.open span:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 765px) {
+  .navbar-menu {
+    display: none;
+  }
+
+  .menu-icon-mobile {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 1001;
+  }
+}
+
+
 /* Sección adicional */
 .about-us-container {
     display: flex;
@@ -152,6 +197,10 @@ body {
     color: white;
 
     
+  }
+
+  .about-us-text-mobile{
+    display: none;
   }
 
   .about-us-content-back{
@@ -258,6 +307,30 @@ body {
       line-height: 1.5;
     }
   }
+
+  @media screen and (max-width: 765px) {
+    .about-us-text-mobile{
+      display: flex;
+      top: 10%;
+    }
+    .about-us-text{
+      display: none;
+    }
+
+    .about-us-title{
+      top: 10%;
+    }
+
+    .about-us-content {
+      top: 10%;
+      transform: translate(0, 50%);
+      position: absolute;
+  
+      
+    }
+  
+    
+  }
   
 
   /* Servicios */
@@ -282,6 +355,10 @@ body {
   gap: 2rem; /* Espaciado entre las tarjetas */
   padding: 0 10%;
   align-items: center;
+}
+
+.services-container-mobile{
+  display: none;
 }
 
 .service-card {
@@ -334,6 +411,23 @@ body {
   cursor: pointer;
 }
 
+/*active*/
+
+.service-card.active img {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+.service-card.active .service-content {
+  opacity: 1;
+}
+
+.service-card.active {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
 
 @media screen and (max-width: 1375px) {
   .service-card {
@@ -346,6 +440,31 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: transparent;
   }
+}
+
+
+@media screen and (max-width: 765px) {
+  .services-container-mobile{
+    display: block;
+    padding: 10% 10%;
+    justify-content: center;
+    
+  }
+  .services-container{
+    display: none;
+  }
+
+  .service-card {
+    position: relative;
+    overflow: hidden;
+    width: 280px;
+    height: 530px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: transparent;
+  }
+  
 }
 
 
@@ -437,6 +556,12 @@ z-index: -1;
 transform: translateX(0);
 }
 
+@media screen and (max-width: 765px) {
+  .pricing-form{
+    padding: 20px 10px;
+  }
+}
+
 
 /* Ubicación */
 
@@ -482,6 +607,12 @@ transform: translateX(0);
     min-height: 300px;
 }
 
+.schedule{
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
 .locations-text{
   width: 50%;
 
@@ -493,6 +624,37 @@ transform: translateX(0);
   border-radius: 20px;
   overflow: hidden;
   min-height: 600px;
+}
+
+@media screen and (max-width: 768px) {
+  .locations-text-content1{
+    display: none;
+  }
+
+  .locations-body{
+    display: flex;
+    flex-direction: column;
+  }
+  .locations-text{
+    width: 100%;
+  }
+  .map-container{
+    width: 100%;
+    height: auto;
+    min-height: auto;
+  }
+
+  .locations-text-content2{
+    padding: 1rem;
+    margin-top: 0;
+    
+  }
+
+  .schedule{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 
 
