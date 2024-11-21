@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import AboutUsImage from "../assets/armarios-1.jpeg";
-import { useEffect, useState } from "react";
 
 export const AboutUs = () => {
   const scrollToSection = (id: string) => {
