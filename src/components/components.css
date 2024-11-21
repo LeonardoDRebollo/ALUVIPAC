@@ -505,6 +505,12 @@ body {
   gap: 15px; 
 }
 
+.form-fields-row{
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 
 .pricing-button {
   margin-top: 2rem;
@@ -559,6 +565,11 @@ transform: translateX(0);
 @media screen and (max-width: 765px) {
   .pricing-form{
     padding: 20px 10px;
+  }
+
+  .form-fields-row{
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -683,4 +694,15 @@ transform: translateX(0);
   cursor: pointer;
   color: rgb(129, 129, 129);
   transition: all 0.3s ease-in-out;
+}
+
+
+@media screen and (max-width: 768px) {
+  .footer{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.6rem;
+    padding-top: 5%;
+  }
+  
 }

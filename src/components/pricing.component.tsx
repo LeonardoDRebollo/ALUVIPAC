@@ -1,6 +1,6 @@
-import { TextField, Autocomplete, Box } from "@mui/material";
+import { TextField, Autocomplete } from "@mui/material";
 import { services } from "./services.component";
-import Background from '../assets/puerta_plegable.jpeg';
+import Background from "../assets/puerta_plegable.jpeg";
 
 export const Pricing = () => {
   return (
@@ -17,7 +17,6 @@ export const Pricing = () => {
         position: "relative",
       }}
     >
-
       <div
         style={{
           position: "absolute",
@@ -32,86 +31,86 @@ export const Pricing = () => {
       <div
         className="pricing-form"
         style={{
-          zIndex: 2, 
+          zIndex: 2,
         }}
       >
-        <h3 style={{ color: "#fff", fontWeight: "400", marginBottom: "10%" }}>Envia tu cotización, y nosotros le daremos seguimiento inmediato</h3>
+        <h3 style={{ color: "#fff", fontWeight: "400", marginBottom: "10%" }}>
+          Envia tu cotización, y nosotros le daremos seguimiento inmediato
+        </h3>
         <div className="form-fields">
-        <Box sx={{ display: "flex", gap: 2, marginBottom: 2 }}>
-        <TextField
-            label="Nombres"
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{ style: { color: "#fff" } }}
-            sx={{
-              "& .MuiInputBase-root": {
-                color: "#fff",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fff",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ccc",
-              },
-            }}
-          />
-          <TextField
-            label="Apellidos"
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{ style: { color: "#fff" } }}
-            sx={{
-              "& .MuiInputBase-root": {
-                color: "#fff",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fff",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ccc",
-              },
-            }}
-          />
-            </Box>
-        
-            <Box sx={{ display: "flex", gap: 2 , marginBottom: 2 }}>
+          <div className="form-fields-row">
             <TextField
-            label="Correo"
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{ style: { color: "#fff" } }}
-            sx={{
-              "& .MuiInputBase-root": {
-                color: "#fff",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fff",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ccc",
-              },
-            }}
-          />
-          <TextField
-            label="Teléfono"
-            variant="outlined"
-            fullWidth
-            InputLabelProps={{ style: { color: "#fff" } }}
-            sx={{
-              "& .MuiInputBase-root": {
-                color: "#fff",
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fff",
-              },
-              "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ccc",
-              },
-            }}
-          />
+              label="Nombres"
+              variant="outlined"
+              fullWidth
+              InputLabelProps={{ style: { color: "#fff" } }}
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#fff",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ccc",
+                },
+              }}
+            />
+            <TextField
+              label="Apellidos"
+              variant="outlined"
+              fullWidth
+              InputLabelProps={{ style: { color: "#fff" } }}
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#fff",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ccc",
+                },
+              }}
+            />
+          </div>
+          <div className="form-fields-row">
+            <TextField
+              label="Correo"
+              variant="outlined"
+              fullWidth
+              InputLabelProps={{ style: { color: "#fff" } }}
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#fff",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ccc",
+                },
+              }}
+            />
+            <TextField
+              label="Teléfono"
+              variant="outlined"
+              fullWidth
+              InputLabelProps={{ style: { color: "#fff" } }}
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#fff",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ccc",
+                },
+              }}
+            />
+          </div>
 
-            </Box>
-          
           <Autocomplete
             disablePortal
             options={services.map((service) => service.title)}
@@ -134,9 +133,9 @@ export const Pricing = () => {
               />
             )}
           />
-             <div style={{display: "flex", justifyContent: "center"}}>
-              <button className="pricing-button">Enviar</button>
-            </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button className="pricing-button">Enviar</button>
+          </div>
         </div>
       </div>
     </div>

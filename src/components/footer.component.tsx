@@ -1,6 +1,7 @@
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { IconButton } from '@mui/material';
 
 export  const Footer = () => {
     const scrollToSection = (id: string) => {
@@ -21,9 +22,17 @@ export  const Footer = () => {
             <p onClick={() => scrollToSection("location")}>Ubicación</p>
             </div>
             <div className="footer-right">
-              <FacebookRoundedIcon />
-              <MailRoundedIcon />
-              <WhatsAppIcon />
+              <IconButton href="https://www.facebook.com/ALUVIPAC" target='_blank'>
+              <FacebookRoundedIcon sx={{ color: "white" }}/>
+              </IconButton>
+              <IconButton href="mailto:aluminioyvidriopanoramico@hotmail.com" target='_blank'>
+              <MailRoundedIcon sx={{ color: "white" }}/>
+              </IconButton>
+           
+               <IconButton href="https://wa.me/9982538489" target='_blank'>
+               <WhatsAppIcon sx={{ color: "white" }}/>
+              </IconButton>
+             
             </div>
           
         </div>
