@@ -18,9 +18,9 @@ export const AboutUs = () => {
           </div>
           <div className="about-us-text">
           <motion.div
-      initial={{ opacity: 0, x: 100 }} // Estado inicial
-      animate={{ opacity: 1, x: 0 }}   // Estado final
-      transition={{ duration: 1 }}   // Duración de la animación
+      initial={{ opacity: 0, x: 100 }} 
+      animate={{ opacity: 1, x: 0 }} 
+      transition={{ duration: 1 }}  
     >
             <div className="about-us-content-back">
 
