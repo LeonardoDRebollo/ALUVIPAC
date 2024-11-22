@@ -43,7 +43,8 @@ export const services = [
     image: "/images/baños.jfif",
     title: "BAÑOS",
     description: "Instalación de baños y lavabos",
-  }
+  },
+
 
 
 ];
@@ -69,7 +70,6 @@ export const Services = () => {
         <h2 style={{ marginTop: "4%", marginLeft: "4%" }}>Servicios y productos</h2>
       </div>
 
-      {/* Carrusel para dispositivos móviles */}
       <div className="services-container-mobile">
         <Slider {...sliderSettings}>
           {services.map((service, index) => (
@@ -89,7 +89,7 @@ export const Services = () => {
           ))}
         </Slider>
       </div>
-       {/* Grid para dispositivos más grandes */}
+
        <div className="services-container">
         {services.map((service, index) => (
           <motion.div

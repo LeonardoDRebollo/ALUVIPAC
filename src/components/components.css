@@ -340,6 +340,7 @@ body {
   min-height: 100vh;
   background-color: #878787;
   margin: 0;
+  padding-bottom: 2%;
 }
 
 .services-title {
@@ -560,6 +561,14 @@ z-index: -1;
 
 .pricing-button:hover::before {
 transform: translateX(0);
+}
+
+.succes-response{
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: 'Urbanist', sans-serif;
 }
 
 @media screen and (max-width: 765px) {
