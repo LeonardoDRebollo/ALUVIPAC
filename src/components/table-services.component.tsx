@@ -18,6 +18,7 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { ServiceInterface } from "./services.component";
 import { enqueueSnackbar } from "notistack";
+import { convertImageToBase64 } from "../functions/utils.functions";
 const ServicesTable = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -142,15 +143,6 @@ const ServicesTable = () => {
       }
     }
    
-  };
-
-  const convertImageToBase64 = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
   };
 
   const fetchServices = async () => {

@@ -30,7 +30,7 @@ export const Pricing = () => {
   const sectionRef = useRef(null);
 
   const isInView = useInView(sectionRef, { once: true });
-  const handleSendEmail = (e: React.FormEvent) => {
+  const SendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
     const emailDataDefault = {
@@ -177,7 +177,7 @@ export const Pricing = () => {
       enqueueSnackbar("Por favor, describe los 'Otros servicios'.", { variant: "warning" });
       return;
     }
-    handleSendEmail(e);
+    SendEmail(e);
   };
   
 

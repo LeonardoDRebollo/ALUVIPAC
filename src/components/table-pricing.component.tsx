@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Box, Button, Chip, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Box, Button, Chip, Dialog, DialogContent, DialogTitle, Tooltip } from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { enqueueSnackbar } from "notistack";
+import { formatDateTime, formatPhoneNumber } from "../functions/utils.functions";
 
 interface CotizacionInterface {
   id_cotizacion: number;
@@ -70,18 +71,29 @@ const CotizacionesTable = () => {
 
   const columns: GridColDef[] = [
     { field: "id_cotizacion", headerName: "ID",  flex: 0.5 },
-    { field: "nombre_servicio", headerName: "Nombre del Servicio",  flex: 1 },
     { field: "nombre", headerName: "Nombres",  flex: 1, renderCell: (params) => params.row.nombres + " " + params.row.apellidos },
-    { field: "telefono", headerName: "Teléfono",  flex: 1 },
+    { field: "telefono", headerName: "Teléfono",  flex: 1, renderCell: (params) => 
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: 1, height: "100%" }}>
+        <Tooltip title={"Copiar teléfono al portapapeles"}>
+      <Chip variant="outlined" color="primary" label={formatPhoneNumber(params.row.telefono)} onClick={() => {navigator.clipboard.writeText(params.row.telefono), enqueueSnackbar("Teléfono copiado al portapapeles") } } />
+        </Tooltip>
+      </div> },
     { field: "email", headerName: "Email", flex: 1, renderCell: (params) => 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: 1, height: "100%" }}>
-      <Chip label={params.row.email} onClick={() => {navigator.clipboard.writeText(params.row.email), enqueueSnackbar("Email copiado al portapapeles") } } />
+        <Tooltip title={"Copiar email al portapapeles"}>
+      <Chip color="primary" label={params.row.email} onClick={() => {navigator.clipboard.writeText(params.row.email), enqueueSnackbar("Email copiado al portapapeles") } } />
+        </Tooltip>
       </div> },
+    { field: "nombre_servicio", headerName: "Servicio solicitado",  flex: 1 },
     { field: "mensaje", headerName: "Mensaje", flex: 2, renderCell: (params) => params.row.mensaje || "Sin mensaje" },
     {
       field: "fecha_hora",
       headerName: "Fecha y Hora",
-      flex: 1
+      flex: 1,
+      renderCell: (params) => {
+        formatDateTime(params.row.fecha_hora);
+        return formatDateTime(params.row.fecha_hora);
+      }
     },
     {
       field: 'acciones',
