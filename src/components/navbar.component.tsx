@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import Logo from "../assets/logo-comprimido.jpg";
-import { Dialog, DialogContent, DialogTitle, TextField, Button, IconButton } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import {
+  IconButton,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import MailRoundedIcon from "@mui/icons-material/MailRounded";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 export const Navbar: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
@@ -15,7 +19,22 @@ export const Navbar: React.FC = () => {
     { label: "Servicios y productos", id: "services" },
     { label: "Cotizaciones", id: "quotes" },
     { label: "Ubicación", id: "location" },
-    { label: "Login", id: "login" },
+    {
+      label: () => (
+        <div>
+          <IconButton onClick={() => window.open("https://www.facebook.com/ALUVIPAC", "_blank" )}>
+            <FacebookRoundedIcon sx={{ color: "white" }} />
+          </IconButton>
+          <IconButton onClick={() => window.open("mailto:aluminioyvidriopanoramico@hotmail.com", "_blank" )}>
+            <MailRoundedIcon sx={{ color: "white" }} />
+          </IconButton>
+          <IconButton onClick={() => window.open("https://wa.me/9982538489", "_blank" )}>
+            <WhatsAppIcon sx={{ color: "white" }} />
+          </IconButton>
+        </div>
+      ),
+      id: "social",
+    },
   ];
 
   const scrollToSection = (id: string) => {
@@ -23,7 +42,7 @@ export const Navbar: React.FC = () => {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMenuOpen(false); 
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
@@ -33,7 +52,9 @@ export const Navbar: React.FC = () => {
         const section = document.getElementById(item.id);
         if (section) {
           const rect = section.getBoundingClientRect();
-          const isVisible = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+          const isVisible =
+            rect.top <= window.innerHeight / 2 &&
+            rect.bottom >= window.innerHeight / 2;
           if (isVisible) {
             setSelectedIndex(index);
           }
@@ -53,15 +74,15 @@ export const Navbar: React.FC = () => {
       {/* Navbar */}
       <div className={`navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="menu-icon-mobile">
-        <IconButton onClick={() => setIsMenuOpen(!isMenuOpen)} >
-          {isMenuOpen ? (
-            <CloseIcon style={{ color: "white", fontSize: "2rem" }} />
-          ) : (
-            <MenuIcon style={{ color: "white", fontSize: "2rem" }} />
-          )}
-        </IconButton>
+          <IconButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? (
+              <CloseIcon style={{ color: "white", fontSize: "2rem" }} />
+            ) : (
+              <MenuIcon style={{ color: "white", fontSize: "2rem" }} />
+            )}
+          </IconButton>
         </div>
-   
+
         <div className="navbar-logo">
           <img
             src={Logo}
@@ -84,76 +105,44 @@ export const Navbar: React.FC = () => {
               key={index}
               className={selectedIndex === index ? "selected" : ""}
               onClick={() => {
-                if (item.label === "Login") {
-                  setIsLoginDialogOpen(true); 
+                if (item.id === "social") {
+
                 } else {
                   setSelectedIndex(index);
                   scrollToSection(item.id);
                 }
               }}
             >
-              <p>{item.label}</p>
+              <p>
+                {" "}
+                {typeof item.label === "function" ? item.label() : item.label}
+              </p>
             </span>
           ))}
         </div>
       </div>
 
-       {/* Menú desplegable */}
-       <div className={`navbar-menu ${isMenuOpen ? "open" : ""}`}>
+      {/* Menú desplegable */}
+      <div className={`navbar-menu ${isMenuOpen ? "open" : ""}`}>
         {menuItems.map((item, index) => (
           <span
             key={index}
             className={selectedIndex === index ? "selected" : ""}
             onClick={() => {
-              if (item.label === "Login") {
-                setIsLoginDialogOpen(true);
+              if (item.id === "social") {
               } else {
                 setSelectedIndex(index);
                 scrollToSection(item.id);
               }
             }}
           >
-            <p>{item.label}</p>
+            <p>
+              {" "}
+              {typeof item.label === "function" ? item.label() : item.label}
+            </p>
           </span>
         ))}
       </div>
-
-      {/* Dialogo de Login */}
-      <Dialog
-        open={isLoginDialogOpen}
-        onClose={() => setIsLoginDialogOpen(false)}
-        aria-labelledby="login-dialog-title"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.7)",}}
-      >
-        <DialogTitle id="login-dialog-title">Iniciar sesión</DialogTitle>
-        <DialogContent>
-          <form>
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Usuario"
-              type="text"
-              variant="outlined"
-            />
-            <TextField
-              fullWidth
-              margin="normal"
-              label="Contraseña"
-              type="password"
-              variant="outlined"
-            />
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              style={{ marginTop: "16px" }}
-              onClick={() => alert("Iniciando sesión...")}
-            >
-              Iniciar sesión
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
     </>
   );
 };

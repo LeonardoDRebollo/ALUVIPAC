@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { motion, useInView } from "framer-motion";
+import { enqueueSnackbar } from "notistack";
 
 export const Pricing = () => {
   const [Nombres, setNombres] = useState("");
@@ -12,12 +13,13 @@ export const Pricing = () => {
   const [Telefono, setTelefono] = useState("");
   const [Correo, setCorreo] = useState("");
   const [Servicio, setServicio] = useState("");
+  const [Mensaje , setMensaje] = useState("");
   const [OtrosServicios, setOtrosServicios] = useState("");
   const [SuccesReponse, setSuccesResponse] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true });
   
-  const handleSendEmail = (e: React.FormEvent) => {
+  const SendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
     const emailDataDefault = {
@@ -25,6 +27,7 @@ export const Pricing = () => {
       full_name: Nombres + " " + Apellidos,
       phone: Telefono,
       service: Servicio,
+      message: Mensaje,
     };
 
     const emailData = {
@@ -62,6 +65,51 @@ export const Pricing = () => {
       }, 5000);
     }
   }, [SuccesReponse]);
+  
+
+  const formValidation = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!Nombres.trim()) {
+      enqueueSnackbar("El campo 'nombres' es obligatorio.", { variant: "warning" });
+      return;
+    }
+
+    if (!Apellidos.trim()) {
+      enqueueSnackbar("El campo 'apellidos' es obligatorio.", { variant: "warning" });
+      return;
+    }
+  
+    // Validar teléfono
+    const phoneRegex = /^[0-9]{10,}$/; 
+    if (!Telefono.trim()) {
+      enqueueSnackbar("El campo 'teléfono' es obligatorio.", { variant: "warning" });
+      return;
+    }
+    if (!phoneRegex.test(Telefono)) {
+      enqueueSnackbar("El teléfono debe contener al menos 10 números válidos.", { variant: "warning" });
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+    if (!Correo.trim()) {
+      enqueueSnackbar("El campo 'email' es obligatorio.", { variant: "warning" });
+      return;
+    }
+    if (!emailRegex.test(Correo)) {
+      enqueueSnackbar("Por favor, introduce un correo electrónico válido.", { variant: "warning" });
+      return;
+    }
+    if (!Servicio.trim()) {
+      enqueueSnackbar("El campo 'servicio' es obligatorio.", { variant: "warning" });
+      return;
+    }
+    if (Servicio === "Otros servicios" && !OtrosServicios.trim()) {
+      enqueueSnackbar("Por favor, describe los 'Otros servicios'.", { variant: "warning" });
+      return;
+    }
+    SendEmail(e);
+  };
+
 
   return (
     <div
@@ -123,7 +171,7 @@ export const Pricing = () => {
             >
               Envia tu cotización, y nosotros le daremos seguimiento inmediato
             </h3>
-            <form className="form-fields" onSubmit={handleSendEmail}>
+            <form className="form-fields" onSubmit={formValidation}>
               <div className="form-fields-row">
                 <TextField
                   label="Nombres"
@@ -254,6 +302,39 @@ export const Pricing = () => {
                     fullWidth
                     variant="outlined"
                     onChange={(e) => setOtrosServicios(e.target.value)}
+                    rows={3}
+                    InputLabelProps={{ style: { color: "#fff" } }}
+                    sx={{
+                      "& .MuiInputBase-root": {
+                        color: "#fff",
+                      },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#fff",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#ccc",
+                      },
+                    }}
+                  />
+                </motion.div>
+              )}
+              {Servicio !== "Otros servicios" && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "linear",
+                  }}
+                >
+                  <TextField
+                    id="filled-multiline-flexible"
+                    label="Mensaje *Opcional*" 
+                    multiline
+                    maxRows={4}
+                    fullWidth
+                    variant="outlined"
+                    onChange={(e) => setMensaje(e.target.value)}
                     rows={3}
                     InputLabelProps={{ style: { color: "#fff" } }}
                     sx={{
