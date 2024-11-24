@@ -41,8 +41,8 @@ export const Locations = () => {
                 <p>Domingos:</p>
               </div>
               <div>
-                <p>830 am a 7:00 pm</p>
-                <p>830 am a 5:00 pm</p>
+                <p>9:00 am a 7:00 pm</p>
+                <p>9:00 am a 3:00 pm</p>
                 <p>Cerrado</p>
               </div>
               </section>

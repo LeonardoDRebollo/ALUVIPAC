@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root@localhost:3306/aluvipac_db"
+}
+
+model cotizacion {
+  id_cotizacion Int      @id @default(autoincrement())
+  id_servicio   Int
+  nombres       String
+  apellidos     String
+  telefono      String
+  email         String
+  mensaje       String?  @db.VarChar(250)
+  fecha_hora    DateTime @default(now())
+  servicio      servicio @relation(fields: [id_servicio], references: [id_servicio], map: "Cotizacion_id_servicio_fkey")
+
+  @@index([id_servicio], map: "Cotizacion_id_servicio_fkey")
+}
+
+model servicio {
+  id_servicio          Int          @id @default(autoincrement())
+  imagen               Bytes?
+  nombre_servicio      String
+  descripcion_servicio String
+  cotizacion           cotizacion[]
+}

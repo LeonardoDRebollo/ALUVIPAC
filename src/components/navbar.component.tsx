@@ -1,14 +1,29 @@
 import { useState, useEffect } from "react";
 import Logo from "../assets/logo-comprimido.jpg";
-import { Dialog, DialogContent, DialogTitle, TextField, Button, IconButton } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, TextField, IconButton } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-export const Navbar: React.FC = () => {
+
+interface navbarProps {
+  onLoggedIn: () => void;
+  onLoggedOut: () => void;
+  onCotizaciones: () => void;
+  onServicios: () => void;
+}
+export const Navbar: React.FC<navbarProps> = ({ onLoggedIn, onLoggedOut, onCotizaciones, onServicios }) => {
+  const User = "admin";
+  const Password = "123";
+  const [DigitedUser, setDigitedUser] = useState("");
+  const [DigitedPassword, setDigitedPassword] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [LoggedIn, setLoggedIn] = useState(sessionStorage.getItem("LoggedIn") === "true" ? true : false);
+
+  const [BadUser, setBadUser] = useState(false);
+  const [BadPassword, setBadPassword] = useState(false);
 
   const menuItems = [
     { label: "Sobre nosotros", id: "about-us" },
@@ -16,6 +31,12 @@ export const Navbar: React.FC = () => {
     { label: "Cotizaciones", id: "quotes" },
     { label: "Ubicación", id: "location" },
     { label: "Login", id: "login" },
+  ];
+
+  const menuItemsAdmin = [
+    { label: "Cotizaciones", id: "quotes-admin" },
+    { label: "Servicios", id: "services-admin" },
+    { label: "Cerrar sesión", id: "login" },
   ];
 
   const scrollToSection = (id: string) => {
@@ -48,6 +69,25 @@ export const Navbar: React.FC = () => {
     };
   }, [menuItems]);
 
+  const Login = () => {
+    if (DigitedPassword === Password && DigitedUser === User) {
+      setDigitedPassword("");
+      setDigitedUser("");
+      setBadPassword(false);
+      setBadUser(false);
+      onLoggedIn();
+      setLoggedIn(true);
+      setSelectedIndex(0);
+      setIsLoginDialogOpen(false);
+
+      sessionStorage.setItem("LoggedIn", "true");
+    }else{
+      setBadPassword(true);
+      setBadUser(true);
+      setSelectedIndex(0);
+    }
+  }
+
   return (
     <>
       {/* Navbar */}
@@ -79,22 +119,49 @@ export const Navbar: React.FC = () => {
           </p>
         </div>
         <div className="navbar-menu">
-          {menuItems.map((item, index) => (
-            <span
+          {LoggedIn ? (
+            menuItemsAdmin.map((item, index) => (
+              <span
               key={index}
               className={selectedIndex === index ? "selected" : ""}
               onClick={() => {
-                if (item.label === "Login") {
-                  setIsLoginDialogOpen(true); 
-                } else {
+                if (item.label === "Cerrar sesión") {
+                  setLoggedIn(false);
+                  sessionStorage.clear();
+                  onLoggedOut();
+                } else if(item.label === "Cotizaciones"){
+                  onCotizaciones();
                   setSelectedIndex(index);
-                  scrollToSection(item.id);
+                }else if(item.label === "Servicios"){
+                  setSelectedIndex(index);
+                  onServicios();
+
                 }
               }}
             >
               <p>{item.label}</p>
             </span>
-          ))}
+        ))
+          ):(
+            menuItems.map((item, index) => (
+              <span
+                key={index}
+                className={selectedIndex === index ? "selected" : ""}
+                onClick={() => {
+                  if (item.label === "Login") {
+                    setIsLoginDialogOpen(true); 
+                  } else {
+                    setSelectedIndex(index);
+                    scrollToSection(item.id);
+                  }
+                }}
+              >
+                <p>{item.label}</p>
+              </span>
+            ))
+          )}
+          
+          
         </div>
       </div>
 
@@ -130,27 +197,30 @@ export const Navbar: React.FC = () => {
           <form>
             <TextField
               fullWidth
+              error={BadUser}
               margin="normal"
               label="Usuario"
               type="text"
+              value={DigitedUser}
               variant="outlined"
+              onChange={(e) => setDigitedUser(e.target.value)}
+              helperText={BadUser ? "Usuario incorrecto" : ""}
             />
             <TextField
               fullWidth
+              error={BadPassword}
               margin="normal"
               label="Contraseña"
               type="password"
               variant="outlined"
+              value={DigitedPassword}
+              onChange={(e) => setDigitedPassword(e.target.value)}
+              helperText={BadPassword ? "Contraseña incorrecta" : ""}
             />
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              style={{ marginTop: "16px" }}
-              onClick={() => alert("Iniciando sesión...")}
-            >
-              Iniciar sesión
-            </Button>
+            <div style={{ display: "flex", justifyContent: "center", fontFamily: "Urbanist", }}>
+              <a className="about-us-button" onClick={Login}>Iniciar sesión</a> 
+            </div>
+          
           </form>
         </DialogContent>
       </Dialog>

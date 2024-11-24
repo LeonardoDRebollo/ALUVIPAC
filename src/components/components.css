@@ -4,6 +4,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: 'Urbanist', sans-serif;
 }
 
 body {
@@ -34,11 +35,6 @@ body {
 .navbar.scrolled {
   opacity: 0.6;
   background-color: rgba(0, 0, 0, 0.8);
-}
-.navbar:hover {
-  opacity: 1;
-  min-height: 70px;
-  transition: all 0.3s ease;
 }
 .navbar-logo {
   width: 30%;
@@ -714,4 +710,18 @@ transform: translateX(0);
     padding-top: 5%;
   }
   
+}
+
+
+
+/* Dashboard Princing */
+
+
+.table-pricing-container{
+  display: flex;
+  font-family: 'Urbanist', sans-serif;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-left: 5%;
+  padding-right: 5%;
 }
